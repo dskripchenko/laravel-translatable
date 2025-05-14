@@ -15,7 +15,7 @@
         }
     ],
     "require": {
-        "laravel/framework": ">=6.*",
+        "laravel/framework": "11.*|12.*",
         "dskripchenko/php-array-helper": "^1.1"
     },
     "require-dev": {
