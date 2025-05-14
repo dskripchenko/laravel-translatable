@@ -1,5 +1,7 @@
 <?php
 
+namespace Dskripchenko\LaravelTranslatable\Providers;
+
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Foundation\CachesConfiguration;
 use Illuminate\Support\ServiceProvider;

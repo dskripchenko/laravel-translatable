@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelTranslatable\Models;
+namespace Dskripchenko\LaravelTranslatable\Models;
 
 use Carbon\Carbon;
 use Closure;

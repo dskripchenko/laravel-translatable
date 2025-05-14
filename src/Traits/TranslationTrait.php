@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelTranslatable\Traits;
+namespace Dskripchenko\LaravelTranslatable\Traits;
 
 use App\Models\Language;
 use App\Services\TranslationService;
