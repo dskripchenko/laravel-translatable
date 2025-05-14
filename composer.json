@@ -1,0 +1,38 @@
+{
+    "name": "dskripchenko/laravel-translatable",
+    "description": "Dynamic Language Translation",
+    "license": "MIT",
+    "homepage": "https://github.com/dskripchenko/laravel-translatable",
+    "keywords": [
+        "laravel",
+        "language",
+        "translation"
+    ],
+    "authors": [
+        {
+            "name": "Denis Skripchenko",
+            "email": "denskrp90@gmail.com"
+        }
+    ],
+    "require": {
+        "laravel/framework": ">=6.*",
+        "dskripchenko/php-array-helper": "^1.1"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dskripchenko\\LaravelTranslatable\\": [
+                "src/"
+            ]
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dskripchenko\\LaravelTranslatable\\Providers\\TranslatableServiceProvider"
+            ]
+        }
+    }
+}
