@@ -2,8 +2,8 @@
 
 namespace Dskripchenko\LaravelTranslatable\Traits;
 
-use App\Models\Language;
-use App\Services\TranslationService;
+use Dskripchenko\LaravelTranslatable\Models\Language;
+use Dskripchenko\LaravelTranslatable\Services\TranslationService;
 use Illuminate\Database\Eloquent\Model;
 
 trait TranslationTrait

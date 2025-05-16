@@ -2,8 +2,8 @@
 
 namespace Dskripchenko\LaravelTranslatable\Services;
 
-use App\Models\Language;
-use App\Models\Translation;
+use Dskripchenko\LaravelTranslatable\Models\Language;
+use Dskripchenko\LaravelTranslatable\Models\Translation;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 
