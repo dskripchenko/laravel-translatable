@@ -76,7 +76,7 @@ class TranslationService
         $translation->entity = $entity;
         $translation->entity_id = $entityId;
         $translation->language_id = $language->id;
-        $translation->content = $default;
+        $translation->content = (string) $default;
         $translation->save();
 
         static::refresh($translation, $language);
