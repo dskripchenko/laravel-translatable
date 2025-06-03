@@ -32,12 +32,12 @@ trait TranslationTrait
 
     /**
      * @param string $field
-     * @param string $value
+     * @param string|null $value
      * @param Language|null $language
      */
     public function saveTranslation(
         string $field,
-        string $value,
+        ?string $value,
         ?Language $language = null
     ): void {
         /** @var Model $this */
@@ -46,7 +46,7 @@ trait TranslationTrait
             'field',
             static::class,
             $this->getKey(),
-            $value,
+            (string) $value,
             $language
         );
         $translation->content = $value;
