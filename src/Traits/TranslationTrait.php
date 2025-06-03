@@ -49,7 +49,7 @@ trait TranslationTrait
             (string) $value,
             $language
         );
-        $translation->content = $value;
+        $translation->content = (string) $value;
         $translation->save();
         TranslationService::refresh($translation, $language);
         $this->touch();
