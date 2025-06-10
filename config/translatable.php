@@ -1,8 +1,5 @@
 <?php
 
-use Dskripchenko\LaravelDelayedLog\Components\DelayedLogger;
-use Monolog\Formatter\NormalizerFormatter;
-
 return [
     'tables' => [
         'languages' => env('TRANSLATABLE_LANGUAGES_TABLE', 'languages'),
