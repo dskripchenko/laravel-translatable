@@ -55,6 +55,6 @@ class Page extends Model
      */
     public function getTable(): string
     {
-        return (string) config('translatable.tables.page_content_block', parent::getTable());
+        return (string) config('translatable.tables.pages', parent::getTable());
     }
 }
