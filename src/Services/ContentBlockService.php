@@ -8,9 +8,26 @@ use Dskripchenko\LaravelTranslatable\Models\Page;
 class ContentBlockService
 {
     /**
+     * @var array|null
+     */
+    public static ?array $cache = null;
+
+    /**
      * @var Page|null
      */
     protected ?Page $page = null;
+
+    public function __construct()
+    {
+        if (is_null(self::$cache)) {
+            self::$cache = ContentBlock::query()
+                ->get()
+                ->mapWithKeys(function (ContentBlock $block) {
+                    return [$block->key => $block];
+                })
+                ->all();
+        }
+    }
 
     /**
      * @param string $key
@@ -31,17 +48,7 @@ class ContentBlockService
             $default = $description;
         }
 
-        /**
-         * @var ContentBlock $block
-         */
-        $block = ContentBlock::query()
-            ->firstOrCreate([
-                'key' => $key,
-            ], [
-                'description' => $description,
-                'type' => $type,
-                'content' => $default,
-            ]);
+        $block = $this->get($key, $description, $default, $type);
 
         $page = $this->getCurrentPage();
         $page->link($block);
@@ -57,6 +64,48 @@ class ContentBlockService
             $result  = str_replace($search, $replace, $result);
         }
         return $result;
+    }
+
+    public function global(
+        string $key,
+        string $description,
+        ?string $default = null,
+        string $type = 'text'
+    ): string {
+        return $this->get($key, $description, $default, $type)
+            ->t('content', $default);
+    }
+
+    /**
+     * @param string $key
+     * @param string $description
+     * @param string|null $default
+     * @param string $type
+     *
+     * @return ContentBlock
+     */
+    public function get(
+        string $key,
+        string $description,
+        ?string $default = null,
+        string $type = 'text'
+    ): ContentBlock {
+        if (isset(self::$cache[$key])) {
+            return self::$cache[$key];
+        }
+
+        /**
+         * @var ContentBlock $block
+         */
+        $block = ContentBlock::query()
+            ->firstOrCreate([
+                'key' => $key,
+            ], [
+                'description' => $description,
+                'type' => $type,
+                'content' => $default,
+            ]);
+        return $block;
     }
 
     /**
@@ -108,7 +157,7 @@ class ContentBlockService
          * @var Page $page
          */
         $page = Page::query()->firstOrCreate([
-            'uri' => $uri
+            'uri' => $uri,
         ]);
         $this->page = $page;
 
