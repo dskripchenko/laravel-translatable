@@ -72,6 +72,9 @@ class ContentBlockService
         ?string $default = null,
         string $type = 'text'
     ): string {
+        if (!$default) {
+            $default = $description;
+        }
         return $this->get($key, $description, $default, $type)
             ->t('content', $default);
     }
