@@ -3,6 +3,7 @@
 namespace Dskripchenko\LaravelTranslatable\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -15,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
- * @property ContentBlock[] $blocks
+ * @property ContentBlock[]|Collection $blocks
  */
 class Page extends Model
 {
@@ -38,8 +39,11 @@ class Page extends Model
      */
     public function link(ContentBlock $block): void
     {
-        $this->blocks()
-            ->syncWithoutDetaching([$block->id]);
+        if ($this->blocks->where('id', $block->id)->count() === 0) {
+            $this->blocks()
+                ->syncWithoutDetaching([$block->id]);
+            $this->load('blocks');
+        }
     }
 
     /**

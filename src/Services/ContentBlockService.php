@@ -105,6 +105,8 @@ class ContentBlockService
                 'type' => $type,
                 'content' => $default,
             ]);
+        self::$cache[$key] = $block;
+
         return $block;
     }
 
@@ -156,7 +158,7 @@ class ContentBlockService
         /**
          * @var Page $page
          */
-        $page = Page::query()->firstOrCreate([
+        $page = Page::query()->with('blocks')->firstOrCreate([
             'uri' => $uri,
         ]);
         $this->page = $page;
