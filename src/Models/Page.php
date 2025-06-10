@@ -47,7 +47,10 @@ class Page extends Model
      */
     public function blocks(): BelongsToMany
     {
-        return $this->belongsToMany(ContentBlock::class, 'page_content_block');
+        return $this->belongsToMany(
+            ContentBlock::class,
+            config('translatable.tables.page_content_block')
+        );
     }
 
     /**
