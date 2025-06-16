@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLanguagesTable extends Migration
+return new class extends Migration
 {
     /**
      * @return void
@@ -31,4 +31,4 @@ class CreateLanguagesTable extends Migration
         $table = config('translatable.tables.languages');
         Schema::dropIfExists($table);
     }
-}
+};

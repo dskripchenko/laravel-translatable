@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContentBlocksTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -34,4 +34,4 @@ class CreateContentBlocksTable extends Migration
         $table = config('translatable.tables.content_blocks');
         Schema::dropIfExists($table);
     }
-}
+};
