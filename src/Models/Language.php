@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dskripchenko\LaravelTranslatable\Models;
 
 use Carbon\Carbon;
 use Closure;
 use Exception;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -25,18 +26,12 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class Language extends Model
 {
-    use HasFactory;
     use SoftDeletes;
 
+    protected static ?Language $defaultLanguage = null;
+    protected static ?array $languagesByCode = null;
+
     protected $fillable = ['code', 'label', 'is_active', 'as_locale'];
-
-    protected $allowedSorts = [
-        'id', 'code', 'label', 'is_active', 'updated_at', 'as_locale'
-    ];
-
-    protected $allowedFilters = [
-        'id', 'code', 'label', 'is_active', 'updated_at', 'as_locale'
-    ];
 
     protected $casts = [
         'is_active' => 'boolean',
@@ -68,30 +63,29 @@ class Language extends Model
      */
     public static function getDefaultLanguage(): Language
     {
-        /**
-         * @var ?Language $default
-         */
-        static $default = null;
-        if (is_null($default)) {
-            $default = Language::query()
-                ->where('as_locale', true)
-                ->first();
-
-            if (!$default) {
-                $code = config('app.locale', 'en');
-                $default = Language::query()
-                    ->where('code', $code)
-                    ->first();
-            }
-
-            if (!$default) {
-                throw new Exception(
-                    "Не установлен языковой пакет дефолтной локали {$code}"
-                );
-            }
+        if (!is_null(static::$defaultLanguage)) {
+            return static::$defaultLanguage;
         }
 
-        return $default;
+        static::$defaultLanguage = Language::query()
+            ->where('as_locale', true)
+            ->first();
+
+        $code = config('app.locale', 'en');
+
+        if (!static::$defaultLanguage) {
+            static::$defaultLanguage = Language::query()
+                ->whereRaw('LOWER(code) = ?', [mb_strtolower($code)])
+                ->first();
+        }
+
+        if (!static::$defaultLanguage) {
+            throw new Exception(
+                "Не установлен языковой пакет дефолтной локали {$code}"
+            );
+        }
+
+        return static::$defaultLanguage;
     }
 
     /**
@@ -100,34 +94,28 @@ class Language extends Model
      */
     public static function byCode(?string $code): Language
     {
-        static $languages = null;
-        if (is_null($languages)) {
+        if (is_null(static::$languagesByCode)) {
             $rows = Language::query()->get()->all();
-            $languages = [];
+            static::$languagesByCode = [];
             foreach ($rows as $row) {
-                $languages[$row->code] = $row;
+                static::$languagesByCode[mb_strtolower($row->code)] = $row;
             }
         }
         if (!$code) {
-            /** @var Language|null $default */
-            $default = Language::query()
-                ->where('as_locale', true)
-                ->first();
-
-            if ($default) {
-                $code = $default->code;
-            } else {
-                $code = config('app.locale', 'en');
+            $code = config('app.locale', 'en');
+            foreach (static::$languagesByCode as $lang) {
+                if ($lang->as_locale) {
+                    $code = $lang->code;
+                    break;
+                }
             }
         }
-        /**
-         * @var Language $language
-         */
-        $language = data_get($languages, $code);
+
+        $language = static::$languagesByCode[mb_strtolower($code)] ?? null;
 
         if (!$language) {
             throw new NotFoundHttpException(
-                "Языковой пакен не установлен"
+                "Языковой пакет не установлен"
             );
         }
 
@@ -158,7 +146,7 @@ class Language extends Model
      */
     public static function runForAllLanguages(
         Closure $closure,
-        Closure $filter = null
+        ?Closure $filter = null
     ): array {
         $list = Language::query()
             ->when($filter, $filter)
@@ -198,5 +186,11 @@ class Language extends Model
     public function getCode(): ?string
     {
         return !$this->as_locale ? $this->code : null;
+    }
+
+    public static function resetStaticCache(): void
+    {
+        static::$defaultLanguage = null;
+        static::$languagesByCode = null;
     }
 }

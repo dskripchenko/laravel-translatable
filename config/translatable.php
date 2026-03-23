@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'auto_create' => env('TRANSLATABLE_AUTO_CREATE', true),
+    'fallback_locale' => env('TRANSLATABLE_FALLBACK_LOCALE'),
+    'database_loader' => env('TRANSLATABLE_DATABASE_LOADER', false),
     'tables' => [
         'languages' => env('TRANSLATABLE_LANGUAGES_TABLE', 'languages'),
         'translations' => env('TRANSLATABLE_TRANSLATIONS_TABLE', 'translations'),

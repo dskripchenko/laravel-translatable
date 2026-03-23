@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dskripchenko\LaravelTranslatable\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -39,15 +40,16 @@ class Page extends Model
      */
     public function link(ContentBlock $block): void
     {
-        if ($this->blocks->where('id', $block->id)->count() === 0) {
-            $this->blocks()
-                ->syncWithoutDetaching([$block->id]);
-            $this->load('blocks');
+        if ($this->blocks->contains('id', $block->id)) {
+            return;
         }
+
+        $this->blocks()->syncWithoutDetaching([$block->id]);
+        $this->setRelation('blocks', $this->blocks->push($block));
     }
 
     /**
-     * @return MorphToMany
+     * @return BelongsToMany
      */
     public function blocks(): BelongsToMany
     {

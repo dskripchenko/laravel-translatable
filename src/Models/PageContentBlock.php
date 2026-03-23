@@ -1,16 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dskripchenko\LaravelTranslatable\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property integer $id
  * @property integer $page_id
  * @property integer $content_block_id
- * @property Carbon $created_at
- * @property Carbon $updated_at
  */
 class PageContentBlock extends Model
 {
@@ -19,15 +18,7 @@ class PageContentBlock extends Model
      */
     protected $table = 'page_content_block';
 
-    public $timestamps = null;
-
-    /**
-     * @var string[]
-     */
-    protected $casts = [
-        'created_at' => 'datetime:Y-m-d H:i:s',
-        'updated_at' => 'datetime:Y-m-d H:i:s',
-    ];
+    public $timestamps = false;
 
     /**
      * @var string[]

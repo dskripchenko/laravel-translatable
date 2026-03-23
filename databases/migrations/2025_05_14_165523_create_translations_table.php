@@ -18,11 +18,16 @@ return new class extends Migration
             $table->string('group', 128)->index();
             $table->string('key', 128)->index();
             $table->string('type')->default('default');
-            $table->string('entity', 128)->nullable();
-            $table->unsignedBigInteger('entity_id')->nullable();
+            $table->string('entity', 128)->default('');
+            $table->string('entity_id', 64)->default('');
             $table->text('content');
             $table->index(['entity_id', 'entity']);
             $table->unique(['language_id', 'group', 'key', 'entity', 'entity_id']);
+            $table->foreign('language_id')
+                ->references('id')
+                ->on(config('translatable.tables.languages'))
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->timestamps();
         });
     }

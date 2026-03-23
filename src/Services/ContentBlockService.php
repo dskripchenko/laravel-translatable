@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dskripchenko\LaravelTranslatable\Services;
 
 use Dskripchenko\LaravelTranslatable\Models\ContentBlock;
@@ -156,7 +158,7 @@ class ContentBlockService
         }
 
         $route = request()?->route();
-        $uri = $route->uri;
+        $uri = $route?->uri ?? '/';
 
         /**
          * @var Page $page

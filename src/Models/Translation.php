@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dskripchenko\LaravelTranslatable\Models;
 
 use Carbon\Carbon;
@@ -13,8 +15,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $key
  * @property string $group
  * @property string $type
- * @property string|null $entity
- * @property integer|null $entity_id
+ * @property string $entity
+ * @property string $entity_id
  * @property string $content
  * @property Carbon $created_at
  * @property Carbon $updated_at

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dskripchenko\LaravelTranslatable\Models;
 
 use Carbon\Carbon;

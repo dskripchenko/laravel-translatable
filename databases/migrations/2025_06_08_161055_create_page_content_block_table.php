@@ -27,7 +27,6 @@ return new class extends Migration
 
             $table->foreign('page_id')
                 ->references('id')
-                ->on('pages')
                 ->on(config('translatable.tables.pages'))
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();

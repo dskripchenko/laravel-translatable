@@ -19,6 +19,9 @@
         "dskripchenko/php-array-helper": "^1.1"
     },
     "require-dev": {
+        "orchestra/testbench": "^9.0|^10.0",
+        "pestphp/pest": "^3.0",
+        "pestphp/pest-plugin-laravel": "^3.0",
         "roave/security-advisories": "dev-master"
     },
     "autoload": {
@@ -26,6 +29,16 @@
             "Dskripchenko\\LaravelTranslatable\\": [
                 "src/"
             ]
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
         }
     },
     "extra": {
