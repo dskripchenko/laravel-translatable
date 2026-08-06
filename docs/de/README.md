@@ -4,9 +4,9 @@ Ein umfassendes Lokalisierungspaket für Laravel, das **Model-Übersetzungen**, 
 
 Übersetzungen werden in der Datenbank gespeichert -- mit zweistufigem Caching (In-Memory + Redis/Memcached), automatischer Datensatzerstellung, Fallback-Sprachkette und vollständiger Integration mit Laravels `__()` / `trans()` Hilfsfunktionen.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../../LICENSE.md)
 
-> [English README](../README.md) | [README на русском](README.ru.md) | [中文文档](README.zh.md)
+> [English README](../../README.md) | [README на русском](../ru/README.md) | [中文文档](../zh/README.md)
 
 ## Warum dieses Paket?
 
@@ -199,7 +199,7 @@ Alle Übersetzungen werden in einer einzigen `translations`-Tabelle mit polymorp
 
 **Caching** ist zweistufig: statischer In-Memory-Cache (pro Request) + persistenter Cache via `Cache::tags` (Redis/Memcached). Übersetzungen werden lazy pro Sprache beim ersten Zugriff geladen.
 
-Detaillierte technische Dokumentation: [architecture.de.md](architecture.de.md) ([en](architecture.md) | [ru](architecture.ru.md) | [zh](architecture.zh.md)).
+Detaillierte technische Dokumentation: [architecture.de.md](architecture.md) ([en](../en/architecture.md) | [ru](../ru/architecture.md) | [zh](../zh/architecture.md)).
 
 ## Wann dieses Paket wählen
 
@@ -210,7 +210,7 @@ Detaillierte technische Dokumentation: [architecture.de.md](architecture.de.md) 
 | Vollständige Lokalisierung: Models + UI + CMS + Sprachverwaltung | **Dieses Paket** |
 | Nur UI-Strings in der Datenbank | Erwägen Sie [spatie/laravel-translation-loader](https://packagist.org/packages/spatie/laravel-translation-loader) |
 
-Detaillierter Vergleich: [competitive-analysis.de.md](competitive-analysis.de.md) ([en](competitive-analysis.md) | [ru](competitive-analysis.ru.md) | [zh](competitive-analysis.zh.md)).
+Detaillierter Vergleich: [competitive-analysis.de.md](competitive-analysis.md) ([en](../en/competitive-analysis.md) | [ru](../ru/competitive-analysis.md) | [zh](../zh/competitive-analysis.md)).
 
 ## Tests
 
@@ -220,4 +220,4 @@ vendor/bin/pest               # 124 Tests, Abdeckung 97,4%
 
 ## Lizenz
 
-MIT. Details in [LICENSE.md](../LICENSE.md).
+MIT. Details in [LICENSE.md](../../LICENSE.md).

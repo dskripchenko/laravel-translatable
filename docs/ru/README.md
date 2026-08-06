@@ -4,9 +4,9 @@
 
 Переводы хранятся в БД с двухуровневым кэшированием (in-memory + Redis/Memcached), автоматическим созданием записей, fallback-цепочкой и полной интеграцией с хелперами Laravel `__()` / `trans()`.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../../LICENSE.md)
 
-> [English README](../README.md) | [README auf Deutsch](README.de.md) | [中文文档](README.zh.md)
+> [English README](../../README.md) | [README auf Deutsch](../de/README.md) | [中文文档](../zh/README.md)
 
 ## Зачем этот пакет?
 
@@ -204,7 +204,7 @@ Event::listen(TranslationUpdated::class, function ($event) {
 
 **Кэширование** двухуровневое: статический in-memory кэш (в рамках запроса) + persistent-кэш через `Cache::tags` (Redis/Memcached). Переводы загружаются лениво — по языку при первом обращении.
 
-Подробная техническая документация: [architecture.ru.md](architecture.ru.md) ([en](architecture.md) | [de](architecture.de.md) | [zh](architecture.zh.md)).
+Подробная техническая документация: [architecture.ru.md](architecture.md) ([en](../en/architecture.md) | [de](../de/architecture.md) | [zh](../zh/architecture.md)).
 
 ## Когда выбирать этот пакет
 
@@ -215,7 +215,7 @@ Event::listen(TranslationUpdated::class, function ($event) {
 | Полная локализация: модели + UI + CMS + управление языками | **Этот пакет** |
 | Только UI-строки в БД | Рассмотрите [spatie/laravel-translation-loader](https://packagist.org/packages/spatie/laravel-translation-loader) |
 
-Подробное сравнение: [competitive-analysis.ru.md](competitive-analysis.ru.md) ([en](competitive-analysis.md) | [de](competitive-analysis.de.md) | [zh](competitive-analysis.zh.md)).
+Подробное сравнение: [competitive-analysis.ru.md](competitive-analysis.md) ([en](../en/competitive-analysis.md) | [de](../de/competitive-analysis.md) | [zh](../zh/competitive-analysis.md)).
 
 ## Тестирование
 
@@ -225,4 +225,4 @@ vendor/bin/pest               # 124 теста, покрытие 97.4%
 
 ## Лицензия
 
-MIT. Подробности в [LICENSE.md](../LICENSE.md).
+MIT. Подробности в [LICENSE.md](../../LICENSE.md).

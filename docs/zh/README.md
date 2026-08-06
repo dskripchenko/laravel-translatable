@@ -4,9 +4,9 @@
 
 翻译存储在数据库中，支持两级缓存（内存 + Redis/Memcached）、自动创建记录、回退语言链，以及与 Laravel `__()` / `trans()` 辅助函数的完整集成。
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../../LICENSE.md)
 
-> [English README](../README.md) | [README на русском](README.ru.md) | [README auf Deutsch](README.de.md)
+> [English README](../../README.md) | [README на русском](../ru/README.md) | [README auf Deutsch](../de/README.md)
 
 ## 为什么选择这个包？
 
@@ -199,7 +199,7 @@ Event::listen(TranslationUpdated::class, fn ($e) => Log::info("已更新: {$e->t
 
 **缓存**为两级：静态内存缓存（每请求）+ 通过 `Cache::tags`（Redis/Memcached）的持久缓存。翻译在首次访问时按语言延迟加载。
 
-详细技术文档：[architecture.zh.md](architecture.zh.md)（[en](architecture.md) | [ru](architecture.ru.md) | [de](architecture.de.md)）。
+详细技术文档：[architecture.zh.md](architecture.md)（[en](../en/architecture.md) | [ru](../ru/architecture.md) | [de](../de/architecture.md)）。
 
 ## 何时选择本包
 
@@ -210,7 +210,7 @@ Event::listen(TranslationUpdated::class, fn ($e) => Log::info("已更新: {$e->t
 | 完整本地化：模型 + UI + CMS + 语言管理 | **本包** |
 | 仅数据库中的 UI 字符串 | 考虑 [spatie/laravel-translation-loader](https://packagist.org/packages/spatie/laravel-translation-loader) |
 
-详细比较：[competitive-analysis.zh.md](competitive-analysis.zh.md)（[en](competitive-analysis.md) | [ru](competitive-analysis.ru.md) | [de](competitive-analysis.de.md)）。
+详细比较：[competitive-analysis.zh.md](competitive-analysis.md)（[en](../en/competitive-analysis.md) | [ru](../ru/competitive-analysis.md) | [de](../de/competitive-analysis.md)）。
 
 ## 测试
 
@@ -220,4 +220,4 @@ vendor/bin/pest               # 124 个测试，覆盖率 97.4%
 
 ## 许可证
 
-MIT。详情见 [LICENSE.md](../LICENSE.md)。
+MIT。详情见 [LICENSE.md](../../LICENSE.md)。

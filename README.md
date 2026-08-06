@@ -1,12 +1,13 @@
 # Laravel Translatable
 
+> 🌐 **English** · [Deutsch](docs/de/README.md) · [Русский](docs/ru/README.md) · [中文](docs/zh/README.md)
+
 A comprehensive translation package for Laravel that combines **model translations**, **UI string localization**, and **CMS content blocks** in a single, unified solution.
 
 Translations are stored in the database with two-level caching (in-memory + Redis/Memcached), automatic record creation, fallback locale support, and full integration with Laravel's `__()` / `trans()` helpers.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md)
 
-> [README auf Deutsch](docs/README.de.md) | [README на русском](docs/README.ru.md) | [中文文档](docs/README.zh.md)
 
 ## Why This Package?
 
@@ -249,7 +250,7 @@ languages          translations              content_blocks
 
 **Caching** is two-level: in-memory static cache (per-request) + persistent cache via `Cache::tags` (Redis/Memcached). Translations are loaded lazily per language on first access.
 
-For detailed architecture documentation, see [docs/architecture.md](docs/architecture.md) ([ru](docs/architecture.ru.md) | [de](docs/architecture.de.md) | [zh](docs/architecture.zh.md)).
+For detailed architecture documentation, see [docs/architecture.md](docs/en/architecture.md) ([ru](docs/ru/architecture.md) | [de](docs/de/architecture.md) | [zh](docs/zh/architecture.md)).
 
 ## When to Choose This Package
 
@@ -260,7 +261,7 @@ For detailed architecture documentation, see [docs/architecture.md](docs/archite
 | Full localization: models + UI + CMS + language management | **This package** -- unified solution |
 | Only UI strings in database | Consider [spatie/laravel-translation-loader](https://packagist.org/packages/spatie/laravel-translation-loader) |
 
-For a detailed comparison, see [docs/competitive-analysis.md](docs/competitive-analysis.md) ([ru](docs/competitive-analysis.ru.md) | [de](docs/competitive-analysis.de.md) | [zh](docs/competitive-analysis.zh.md)).
+For a detailed comparison, see [docs/competitive-analysis.md](docs/en/competitive-analysis.md) ([ru](docs/ru/competitive-analysis.md) | [de](docs/de/competitive-analysis.md) | [zh](docs/zh/competitive-analysis.md)).
 
 ## Testing
 
